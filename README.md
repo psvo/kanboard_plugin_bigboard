@@ -9,7 +9,8 @@ All functionality is still available, so you can drag-and-drop tasks, add tasks 
 
 Comments Welcome.
 
+2019-05 v1.2.0 Updates (by Pierre Cadeot at ac-reunion.fr)
 
-## Important Notice
-
-I am no longer using Kanboard, therefore i will no longer maintain or support the Bigboard. I twould be great if someone is interested in volunteering to maintain the project in the future.
+- now you can select which projects are displayed on the BigBoard
+- projects selected are stored into database
+- you can collapse (fold) or expand (unfold) projects on bigboard view, status of which is database stored

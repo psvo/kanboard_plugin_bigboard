@@ -1,4 +1,11 @@
-<div id="board-container" data-project-id='<?= $project['id'] ?>'>
+<?php
+	if ($this->app->bigboardModel->collapseFind($project['id'], $this->user->getId())) {
+		$display = "none";
+	} else {
+		$display = "block";
+	}
+?>
+<div id="board-container" data-project-id='<?= $project['id'] ?>' style="display:<?= $display ?>">
     <?php if (empty($swimlanes) || empty($swimlanes[0]['nb_columns'])): ?>
         <p class="alert alert-error"><?= t('There is no column or swimlane activated in your project!') ?></p>
     <?php else: ?>

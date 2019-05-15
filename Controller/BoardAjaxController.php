@@ -3,6 +3,7 @@
 namespace Kanboard\Plugin\Bigboard\Controller;
 
 use Kanboard\Controller\BaseController;
+use Kanboard\Core\Base;
 use Kanboard\Core\Controller\AccessForbiddenException;
 use Kanboard\Model\UserMetadataModel;
 
@@ -142,4 +143,63 @@ class BoardAjaxController extends BaseController
                 ->format($this->boardFormatter->withProjectId($project_id))
         ));
     }
+	
+		 
+	 /*
+	 * AJAX called : record into database status of selected or unselected project
+	 * deprecated : for reference only (replaced by form validation method savelist()
+	 */
+	public function selectProject()
+    {
+        $project = $this->getProject();
+        $user = $this->getUser();
+        $selected = $this->bigboardModel->selectFind($project['id'], $user['id']);
+        if ($selected) {
+            $status = $this->bigboardModel->selectDrop($selected['id']);
+        } else {
+            $status = $this->bigboardModel->selectTake($project['id'], $user['id']);
+        }
+
+        $this->response->json(array('status' => $status));
+    }
+
+	 /*
+	 * record into database status of collapsed or expanded project in bigboard view
+	 */
+	public function collapseProject()
+    {
+        $projectid = $_GET["project_id"];
+        $user = $this->getUser();
+		$userid = $user['id'];
+		error_log("WIP collapseProject() project $projectid for user $userid would be added to the table");
+		$collapsed = $this->bigboardModel->collapseFind($projectid, $user['id']);
+        if ($collapsed) {
+            $status = $this->bigboardModel->collapseDrop($collapsed['id']);
+        } else {
+            $status = $this->bigboardModel->collapseTake($projectid, $user['id']);
+        }
+        $this->response->json(array('status' => $status));
+    }	
+	
+	 /**
+      * get all selected projects from bigboard view to store them as collapsed.
+      */
+	 public function collapseAllProjects()
+	{
+		$user = $this->getUser();
+		$projects_id = $this->bigboardModel->selectFindAllProjectsById($user['id']);
+		$this->bigboardModel->collapseClear($user['id']);
+		foreach ($projects_id as $project_id) {
+			$this->bigboardModel->collapseTake($project_id, $user['id']);
+		}
+		return true;
+	}
+	 /**
+      * clear all projects from collapsed status to display all of them as expanded
+      */
+	 public function expandAllProjects()
+	{
+		$user = $this->getUser();
+		return $this->bigboardModel->collapseClear($user['id']);
+	}	
 }

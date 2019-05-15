@@ -12,5 +12,4 @@
         'index',
         ['plugin' => 'Bigboard', ]
     ) ?>
-	- <?= $this->url->link(t("Projects Selection"), 'Bigboard', 'select', ['plugin' => 'Bigboard', ], false, 'js-modal-medium') ?>
 </li>
