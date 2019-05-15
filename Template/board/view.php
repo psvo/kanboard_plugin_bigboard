@@ -39,13 +39,19 @@
     
     
     </big></span>
-    
-
+<?php
+	if ($this->app->bigboardModel->collapseFind($project['id'], $this->user->getId())) {
+		$display = "none";
+	} else {
+		$display = "block";
+	}
+?>
+<div class="BBcontent" data-project-id='<?= $project['id'] ?>' style="display:<?= $display ?>">    
     <?= $this->render('bigboard:board/table_container', array(
         'project' => $project,
         'swimlanes' => $swimlanes,
         'board_private_refresh_interval' => $board_private_refresh_interval,
         'board_highlight_period' => $board_highlight_period,
     )) ?>
-
+</div>
 </section>
