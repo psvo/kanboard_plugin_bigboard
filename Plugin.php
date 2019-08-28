@@ -12,10 +12,13 @@ class Plugin extends Base
     public function initialize()
     {
       $this->template->hook->attach('template:project-list:menu:before', 'bigboard:Bigboard');
-	  $this->template->hook->attach('template:project-header:view-switcher', 'bigboard:BigboardNoOpts');
+      //$this->template->hook->attach('template:project-header:view-switcher', 'bigboard:BigboardNoOpts');
+      $this->template->hook->attach('template:header:dropdown', 'bigboard:header/user_dropdown');      
+      
       $this->template->setTemplateOverride('board/table_container','bigboard:board/table_container');
       $this->template->setTemplateOverride('board/table_tasks','bigboard:board/table_tasks');
       $this->template->setTemplateOverride('board/table_private','bigboard:board/table_private');
+
       $this->hook->on('template:layout:js', array('template' => 'plugins/Bigboard/Asset/js/BoardDragAndDrop.js'));
       $this->hook->on('template:layout:js', array('template' => 'plugins/Bigboard/Asset/js/BoardPolling.js'));      
 	  $this->hook->on('template:layout:js', array('template' => 'plugins/Bigboard/Asset/js/bigboard-selected.js'));
@@ -51,22 +54,22 @@ class Plugin extends Base
 
     public function getPluginDescription()
     {
-        return t('BigBoard improved (projects selection, db stored selection) : a Kanboard that displays selected multiple projects - based on BigBoard 1.0.5 by Thomas Stinner');
+        return t('BigBoard: a Kanboard that displays selected multiple projects');
     }
 
     public function getPluginAuthor()
     {
-        return 'Pierre Cadeot';
+        return 'BlueTeck, Thomas Stinner, Pierre Cadeot';
     }
 
     public function getPluginVersion()
     {
-        return '1.2.0';
+        return '1.2.1';
     }
 
     public function getPluginHomepage()
     {
-        return 'https://github.com/stinnux/kanboard-bigboard';
+        return 'https://github.com/BlueTeck/kanboard_plugin_bigboard';
     }
 
     public function getCompatibleVersion()

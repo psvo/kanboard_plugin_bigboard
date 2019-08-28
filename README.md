@@ -1,17 +1,24 @@
-kanboard-bigboard
-=================
+Kanboard Plugin Bigboard
+==========================
 
 A Kanboard that can display multiple projects.
 
-Go To Project-Management->BigBoard. Here you will see all projects you have access to in one page.
+Plugin for https://github.com/kanboard/kanboard
 
-All functionality is still available, so you can drag-and-drop tasks, add tasks etc.
+Author
+------
 
-Comments Welcome.
+- [BlueTeck](https://github.com/BlueTeck)
+- [Pierre Cadeot](https://github.com/pcadeot)
+- based on Bigboard by [Thomas Stinner](https://github.com/stinnux)
+- License MIT
 
-2019-05 v1.2.0 Updates (by Pierre Cadeot at ac-reunion.fr)
+Installation
+------------
 
-- now you can select which projects are displayed on the BigBoard
-- projects selected are stored into database
-- you can collapse (fold) or expand (unfold) projects on bigboard view, status of which is database stored
-- if starred project plugin is enabled, you can add all starred projects to the selection for bigboard
+- Decompress the archive in the `plugins` folder
+
+or
+
+- Create a folder **plugins/Bigboard**
+- Copy all files under this directory
