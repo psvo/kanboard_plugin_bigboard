@@ -2,7 +2,7 @@
 
 require_once 'tests/units/Base.php';
 
-use Kanboard\Plugin\Coverimage\Plugin;
+use Kanboard\Plugin\BigBoard\Plugin;
 
 class PluginTest extends Base
 {
