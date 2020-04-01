@@ -4,8 +4,8 @@ namespace Kanboard\Plugin\Bigboard\Controller;
 
 use Kanboard\Controller\BaseController;
 use Kanboard\Formatter\BoardFormatter;
-use Kanboard\Model\UserMetadataModel;
 use Kanboard\Helper\Url;
+use Kanboard\Model\UserMetadataModel;
 
 /**
  * Bigboard Controller.
@@ -54,7 +54,7 @@ class Bigboard extends BaseController
             $ProjectList[] = $Project;
         }
 
-        echo $this->template->render('bigboard:board/list', ['projectList' => $ProjectList,]);
+        echo $this->template->render('bigboard:board/list', ['projectList' => $ProjectList]);
     }
 
     /**
@@ -74,8 +74,10 @@ class Bigboard extends BaseController
             }
         }
         // if called from bigboard view so refresh it
-        if (isset($_POST["boardview"]))
-            return $this->response->redirect($this->helper->url->to('Bigboard', 'index', ['plugin' => 'Bigboard',]));
+        if (isset($_POST["boardview"])) {
+            return $this->response->redirect($this->helper->url->to('Bigboard', 'index', ['plugin' => 'Bigboard']));
+        }
+
     }
 
     /**
@@ -87,12 +89,28 @@ class Bigboard extends BaseController
         $project_ids = $this->bigboardModel->selectFindAllProjectsById($user['id']);
         $search = urldecode($this->request->getStringParam('search'));
         $nb_projects = count($project_ids);
+
+        $categories_list = $users_list = $custom_filters_list = array();
+        foreach ($project_ids as $project_id) {
+            $project_categories = $this->categoryModel->getList($project_id, false);
+            if (!empty($project_categories)) { $categories_list = array_unique(array_merge($categories_list, $project_categories));}
+
+            $project_users = $this->projectUserRoleModel->getAssignableUsersList($project_id, false);
+            if (!empty($project_users)) { $users_list = array_unique(array_merge($users_list, $project_users));}
+
+            $project_custom_filters_list = $this->customFilterModel->getAll($project_id, $this->userSession->getId());
+            if (!empty($project_custom_filters_list)) { $custom_filters_list = array_unique(array_merge($custom_filters_list, $project_custom_filters_list));}
+        }
+
         $this->response->html($this->helper->layout->app('bigboard:board/show', array(
             'values' => array(
-                'search' => $search
+                'search' => $search,
             ),
             'user' => $user,
-            'title' => t('BigBoard') . ' (' . $nb_projects . ') ',            
+            'custom_filters_list' => isset($custom_filters_list) ? $custom_filters_list : array(),
+            'users_list' => isset($users_list) ? $users_list : array(),
+            'categories_list' => isset($categories_list) ? $categories_list : array(),
+            'title' => t('BigBoard') . ' (' . $nb_projects . ') ',
         )));
         // Draw a header First
         $menu = $this->template->render('bigboard:board/switcher', array(
