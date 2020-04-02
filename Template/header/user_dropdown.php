@@ -1,6 +1,5 @@
 <li>
-	<i class="fa fa-th-large fa-fw"></i> 
-    <?= $this->url->link(
+    <?= $this->url->icon('th-large',
         t('BigBoard'),
         'Bigboard',
         'index',
