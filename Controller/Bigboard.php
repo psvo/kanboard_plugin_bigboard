@@ -90,7 +90,7 @@ class Bigboard extends BaseController
         $menu = $this->template->render('bigboard:board/switcher', [
             'bigboarddisplaymode' => $this->userSession->isBigboardCollapsed(),
         ]);
-        echo '<section class="page">'.$menu.'</section>';
+        echo '<section>'.$menu.'</section>';
         echo '<div align=center style="color:lightgray"><span id="status_update"></span></div>';
         $this->showProjects($project_ids);
     }
