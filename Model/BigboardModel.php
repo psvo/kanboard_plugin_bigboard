@@ -3,6 +3,7 @@
 namespace Kanboard\Plugin\BigBoard\Model;
 
 use Kanboard\Core\Base;
+use Kanboard\Model\ProjectModel;
 
 class BigboardModel extends Base
 {
@@ -17,6 +18,7 @@ class BigboardModel extends Base
     {
         $selectedProjects = $this->db->table(self::SELTABLE)
             ->eq('user_id', $user_id)
+            ->in('project_id', $this->db->table(ProjectModel::TABLE)->findAllByColumn('id'))
             ->findAll();
 
         $projects = array();
@@ -31,6 +33,7 @@ class BigboardModel extends Base
     {
         $selectedProjects = $this->db->table(self::SELTABLE)
             ->eq('user_id', $user_id)
+            ->in('project_id', $this->db->table(ProjectModel::TABLE)->findAllByColumn('id'))
             ->findAll();
 
         $projects = array();
