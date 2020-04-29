@@ -72,7 +72,9 @@ class Bigboard extends BaseController
 
             $project_custom_filters_list = $this->customFilterModel->getAll($project_id, $this->userSession->getId());
             if (!empty($project_custom_filters_list)) {
-                $custom_filters_list = array_unique(array_merge($custom_filters_list, $project_custom_filters_list));
+                foreach ($project_custom_filters_list as $custom_filter) {
+                    array_push($custom_filters_list, $custom_filter);
+                }
             }
         }
 
