@@ -1,21 +1,19 @@
-Kanboard Plugin Bigboard
-==========================
+# Kanboard Plugin Bigboard
 
 A Kanboard that can display multiple projects.
 
 Plugin for <https://github.com/kanboard/kanboard>
 
-Author
-------
+## Author
 
 - [BlueTeck](https://github.com/BlueTeck)
 - [Pierre Cadeot](https://github.com/pcadeot)
 - [PapeCoding](https://github.com/PapeCoding)
+- [Chaosmeister](https://github.com/Chaosmeister)
 - based on Bigboard by [Thomas Stinner](https://github.com/stinnux)
 - License MIT
 
-Installation
-------------
+## Installation
 
 - Decompress the archive in the `plugins` folder
 
