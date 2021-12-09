@@ -2,6 +2,9 @@
 	<div class="views-switcher-component">
 		<ul class="views">
 			<li>
+				<a href="<?= $this->app->config('application_url') ?>"><i class="fa fa-home fa-fw"></i><?= t('Home') ?></a>
+			</li>
+			<li>
 				<?= $this->url->icon('eye', t('Projects Selection'), 'Bigboard', 'select', ['plugin' => 'Bigboard', 'boardview' => 'active', ], false, 'js-modal-medium') ?>
 			</li>
 			<li class="collapse_all">
