@@ -33,6 +33,9 @@
 					</a>
 				</span>
 			</li>
+			<li>
+				<a href="/?controller=ActivityController&amp;action=user" class="js-modal-medium" title=""><i class="fa fa-dashboard fa-fw js-modal-medium" aria-hidden="true"></i><?= t('Activity stream') ?></a>
+			</li>
 		</ul>
 	</div>
 </div>
