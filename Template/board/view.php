@@ -29,6 +29,7 @@ if ($this->app->bigboardModel->collapseFind($project['id'], $this->user->getId()
 		<?php
 		if ($this->user->hasProjectAccess('ProjectViewController', 'show', $project['id'])) {
 			echo $this->url->icon('cog', '', 'ProjectViewController', 'show', array('project_id' => $project['id']), false, 'btn');
+			echo $this->modal->mediumButton('plus', '', 'SwimlaneController', 'create', array('project_id' => $project['id']));
 		}
 		?>
 		<div class='btn bbprojectcollapse'>
