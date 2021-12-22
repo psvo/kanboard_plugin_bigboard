@@ -60,12 +60,12 @@ class Plugin extends Base
 
     public function getPluginAuthor()
     {
-        return 'BlueTeck, Thomas Stinner, Pierre Cadeot, PapeCoding';
+        return 'BlueTeck, Thomas Stinner, Pierre Cadeot, PapeCoding, Chaosmeister, Jake G';
     }
 
     public function getPluginVersion()
     {
-        return '1.5.0';
+        return '1.5.2';
     }
 
     public function getPluginHomepage()
