@@ -50,7 +50,13 @@
                 <div class="task-board-avatars-outer">
                     <div class="task-board-icons-top">
                         <div class="task-board-icons-abs-topright">
-                            <!-- alternate location render board task_footer -->
+                            <?php if ($this->user->userMetadataModel->exists($this->user->getid(), "boardcustomizer_compactlayout")) { ?>
+                                <?= $this->render('board/task_footer', array(
+                                    'task' => $task,
+                                    'not_editable' => $not_editable,
+                                    'project' => $project,
+                                )) ?>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="task-board-avatars-inner">
@@ -68,11 +74,13 @@
             <?= $this->hook->render('template:board:private:task:after-title', array('task' => $task)) ?>
 
             <div class="task-icons-bottom">
-                <?= $this->render('board/task_footer', array(
-                    'task' => $task,
-                    'not_editable' => $not_editable,
-                    'project' => $project,
-                )) ?>
+                <?php if (!$this->user->userMetadataModel->exists($this->user->getid(), "boardcustomizer_compactlayout")) { ?>
+                    <?= $this->render('board/task_footer', array(
+                        'task' => $task,
+                        'not_editable' => $not_editable,
+                        'project' => $project,
+                    )) ?>
+                <?php } ?>
             </div>
         </div>
     <?php endif ?>
