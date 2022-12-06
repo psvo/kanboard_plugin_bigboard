@@ -55,7 +55,10 @@ class Bigboard extends BaseController
     {
         $user = $this->getUser();
         $project_ids = $this->bigboardModel->selectFindAllProjectsById($user['id']);
-        $search = urldecode($this->request->getStringParam('search', $this->userSession->getBigboardSearch()));
+        $search = $this->request->getStringParam('search', $this->userSession->getBigboardSearch());
+        $search = $search != null
+            ? urldecode($this->request->getStringParam('search', $this->userSession->getBigboardSearch()))
+            : "status:open";
         $this->userSession->setBigboardSearch($search);
         $nb_projects = count($project_ids);
 
