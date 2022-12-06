@@ -13,6 +13,7 @@ class Plugin extends Base
         $this->template->hook->attach('template:header:dropdown', 'bigboard:header/user_dropdown');
         $this->template->hook->attach('template:dashboard:page-header:menu', 'bigboard:header/bigboard_header_link');
         $this->template->hook->attach('template:project-header:view-switcher', 'bigboard:header/bigboard_header_link');
+        $this->hook->on('template:layout:js', array('template' => 'plugins/Bigboard/Asset/js/kbd.js'));
 
         if ($this->request->getStringParam("plugin") == "Bigboard") {
             $this->template->setTemplateOverride('board/table_container', 'bigboard:board/table_container');

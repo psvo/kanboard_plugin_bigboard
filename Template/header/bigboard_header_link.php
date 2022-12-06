@@ -3,6 +3,9 @@
         t('BigBoard'),
         'Bigboard',
         'index',
-        ['plugin' => 'Bigboard', ]
+        ['plugin' => 'Bigboard', ],
+        false,
+        'bigboard-view',
+        t('Keyboard shortcut: "%s"', 'v d')
     ) ?>
 </li>
